@@ -36,74 +36,45 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 bg-black-primary">
-        <div className="absolute inset-0 bg-gradient-to-br from-black-primary via-primary/20 to-secondary/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-secondary/10 animate-pulse"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <div className="min-h-screen bg-black-primary flex items-center justify-center relative overflow-hidden">
+      {/* Subtle ambient lighting */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-secondary/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          {/* Logo */}
-          <div className="flex items-center justify-center mb-6">
+      {/* Clickable Logo */}
+      <div className="relative z-10 group cursor-pointer" onClick={() => setShowOnboarding(true)}>
+        <div className="relative transform transition-all duration-500 hover:scale-110 group-hover:drop-shadow-2xl">
+          {/* Glow effect behind logo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150"></div>
+          
+          {/* Logo with depth */}
+          <div className="relative">
             <img 
               src="/lovable-uploads/1cafcb12-3a6f-4fcf-818d-5250ac45ab53.png" 
               alt="Impression Logo" 
-              className="w-24 h-24 md:w-32 md:h-32"
+              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 relative z-10 transition-all duration-500 group-hover:brightness-110"
+              style={{
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8)) drop-shadow(0 0 20px hsl(var(--primary)/0.3))',
+                transformStyle: 'preserve-3d'
+              }}
             />
+            
+            {/* Subtle reflection */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent mb-6">
-            Impression
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Where connections emerge through resonance, not declarations
+
+          {/* Ripple effect on hover */}
+          <div className="absolute inset-0 rounded-full border border-primary/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
+        </div>
+
+        {/* Minimal call to action */}
+        <div className="text-center mt-8 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+          <p className="text-white/80 text-lg font-light tracking-wide">
+            Touch to begin
           </p>
         </div>
-
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl">
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-6 text-center">
-              <Zap className="w-12 h-12 text-gold-400 mx-auto mb-4" />
-              <h3 className="text-white text-lg font-semibold mb-2">Behavioral Resonance</h3>
-              <p className="text-white/70 text-sm">AI analyzes your subconscious signals to find genuine connections</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-6 text-center">
-              <MapPin className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-              <h3 className="text-white text-lg font-semibold mb-2">Spatial Discovery</h3>
-              <p className="text-white/70 text-sm">Explore connections through intuitive, zone-based mapping</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-6 text-center">
-              <Users className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-              <h3 className="text-white text-lg font-semibold mb-2">Dynamic Relationships</h3>
-              <p className="text-white/70 text-sm">Form evolving connections that adapt to your shared journey</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* CTA Button */}
-        <Button 
-          onClick={() => setShowOnboarding(true)}
-          className="bg-gradient-to-r from-primary to-secondary hover:from-primary-glow hover:to-secondary text-white px-12 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
-          style={{ boxShadow: 'var(--shadow-brand)' }}
-        >
-          Begin Your Journey
-        </Button>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-4 h-4 bg-white/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-32 w-2 h-2 bg-purple-400/40 rounded-full animate-pulse delay-500"></div>
-        <div className="absolute bottom-32 left-40 w-3 h-3 bg-blue-400/30 rounded-full animate-pulse delay-1000"></div>
       </div>
     </div>
   );
