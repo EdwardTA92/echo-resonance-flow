@@ -38,16 +38,25 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Animated Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-800">
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-purple-500/10 to-gold-400/20 animate-pulse"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="fixed inset-0 bg-black-primary">
+        <div className="absolute inset-0 bg-gradient-to-br from-black-primary via-primary/20 to-secondary/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-secondary/10 animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-purple-200 to-gold-300 bg-clip-text text-transparent mb-6">
+          {/* Logo */}
+          <div className="flex items-center justify-center mb-6">
+            <img 
+              src="/lovable-uploads/1cafcb12-3a6f-4fcf-818d-5250ac45ab53.png" 
+              alt="Impression Logo" 
+              className="w-24 h-24 md:w-32 md:h-32"
+            />
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent mb-6">
             Impression
           </h1>
           <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed">
@@ -85,7 +94,8 @@ const Index = () => {
         {/* CTA Button */}
         <Button 
           onClick={() => setShowOnboarding(true)}
-          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-12 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl"
+          className="bg-gradient-to-r from-primary to-secondary hover:from-primary-glow hover:to-secondary text-white px-12 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
+          style={{ boxShadow: 'var(--shadow-brand)' }}
         >
           Begin Your Journey
         </Button>

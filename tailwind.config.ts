@@ -66,7 +66,10 @@ export default {
 				gold: {
 					400: '#fbbf24',
 					300: '#fcd34d'
-				}
+				},
+				'black-primary': 'hsl(var(--black-primary))',
+				'black-soft': 'hsl(var(--black-soft))',
+				'black-muted': 'hsl(var(--black-muted))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
