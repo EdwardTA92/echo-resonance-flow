@@ -1,10 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Zap, Heart, Users } from "lucide-react";
 import OnboardingFlow from '@/components/OnboardingFlow';
-import ResonanceMap from '@/components/ResonanceMap';
+import MainApp from '@/components/MainApp';
 
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,7 +25,7 @@ const Index = () => {
   };
 
   if (isAuthenticated && currentUser) {
-    return <ResonanceMap user={currentUser} />;
+    return <MainApp user={currentUser} />;
   }
 
   if (showOnboarding) {
