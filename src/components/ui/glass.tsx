@@ -67,22 +67,34 @@ const Glass = React.forwardRef<HTMLDivElement, GlassProps>(
 )
 Glass.displayName = "Glass"
 
-const GlassButton = React.forwardRef<
-  HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof glassVariants>
->(({ className, variant = "default", surface = "interactive", glow = "subtle", blur = "md", children, ...props }, ref) => (
-  <button
-    className={cn(
-      glassVariants({ variant, surface, glow, blur }),
-      "px-6 py-3 rounded-lg font-medium text-white/90 hover:text-white transition-colors relative z-10",
-      className
-    )}
-    ref={ref}
-    {...props}
-  >
-    {children}
-  </button>
-))
+interface GlassButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof glassVariants> {
+  size?: "sm" | "md" | "lg";
+}
+
+const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
+  ({ className, variant = "default", surface = "interactive", glow = "subtle", blur = "md", size = "md", children, ...props }, ref) => {
+    const sizeClasses = {
+      sm: "px-4 py-2 text-sm",
+      md: "px-6 py-3",
+      lg: "px-8 py-4 text-lg"
+    };
+
+    return (
+      <button
+        className={cn(
+          glassVariants({ variant, surface, glow, blur }),
+          sizeClasses[size],
+          "rounded-lg font-medium text-white/90 hover:text-white transition-colors relative z-10",
+          className
+        )}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+)
 GlassButton.displayName = "GlassButton"
 
 const GlassCard = React.forwardRef<
