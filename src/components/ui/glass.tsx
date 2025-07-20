@@ -9,24 +9,30 @@ const glassVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white/10 border-white/20 shadow-lg",
-        subtle: "bg-white/5 border-white/10 shadow-md",
-        strong: "bg-white/15 border-white/30 shadow-xl",
-        primary: "bg-primary/10 border-primary/20 shadow-lg shadow-primary/10",
-        secondary: "bg-secondary/10 border-secondary/20 shadow-lg shadow-secondary/10",
-        dark: "bg-black/20 border-white/10 shadow-lg",
+        default: "bg-white/10 border-white/20 shadow-lg glass-effect",
+        subtle: "bg-white/5 border-white/10 shadow-md glass-effect",
+        strong: "bg-white/15 border-white/30 shadow-xl glass-effect",
+        primary: "bg-primary/10 border-primary/20 shadow-lg shadow-primary/10 glass-effect",
+        secondary: "bg-secondary/10 border-secondary/20 shadow-lg shadow-secondary/10 glass-effect",
+        dark: "bg-black/20 border-white/10 shadow-lg glass-effect",
+        bubble: "bg-white/8 border-white/15 shadow-2xl glass-bubble",
+        dimensional: "bg-white/12 border-white/25 shadow-3xl glass-dimensional",
       },
       surface: {
         flat: "",
-        raised: "shadow-2xl",
-        floating: "shadow-2xl transform hover:scale-[1.02]",
-        interactive: "hover:bg-white/15 hover:border-white/30 cursor-pointer active:scale-[0.98]",
+        raised: "shadow-2xl transform-gpu",
+        floating: "shadow-2xl transform-gpu hover:scale-[1.02] hover:shadow-3xl",
+        interactive: "hover:bg-white/15 hover:border-white/30 cursor-pointer active:scale-[0.98] transform-gpu press-effect",
+        pressable: "cursor-pointer press-bubble transform-gpu hover:shadow-3xl active:shadow-inner",
+        bubble: "transform-gpu bubble-surface hover:scale-[1.05] active:scale-[0.95]",
       },
       glow: {
         none: "",
         subtle: "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/5 before:to-secondary/5 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300",
         strong: "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/10 before:to-secondary/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300",
         always: "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/8 before:to-secondary/8 before:opacity-100",
+        bubble: "glass-glow",
+        dimensional: "dimensional-glow",
       },
       blur: {
         sm: "backdrop-blur-sm",
@@ -72,7 +78,7 @@ interface GlassButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 }
 
 const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
-  ({ className, variant = "default", surface = "interactive", glow = "subtle", blur = "md", size = "md", children, ...props }, ref) => {
+  ({ className, variant = "bubble", surface = "pressable", glow = "bubble", blur = "md", size = "md", children, ...props }, ref) => {
     const sizeClasses = {
       sm: "px-4 py-2 text-sm",
       md: "px-6 py-3",
@@ -84,7 +90,7 @@ const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
         className={cn(
           glassVariants({ variant, surface, glow, blur }),
           sizeClasses[size],
-          "rounded-lg font-medium text-white/90 hover:text-white transition-colors relative z-10",
+          "rounded-lg font-medium text-white/90 hover:text-white transition-all duration-200 relative z-10",
           className
         )}
         ref={ref}

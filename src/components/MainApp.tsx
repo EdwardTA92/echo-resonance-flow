@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import ResonanceMap from './ResonanceMap';
+import WorldMap from './WorldMap';
 import ProfileManagement from './ProfileManagement';
 import MessagingSystem from './MessagingSystem';
 import SettingsPrivacy from './SettingsPrivacy';
@@ -26,7 +26,7 @@ const MainApp = ({ user }: { user: any }) => {
   const renderCurrentView = () => {
     switch (currentView) {
       case 'resonance':
-        return <ResonanceMap user={userProfile} />;
+        return <WorldMap user={userProfile} />;
       case 'profile':
         return (
           <ProfileManagement
@@ -58,9 +58,9 @@ const MainApp = ({ user }: { user: any }) => {
           />
         );
       case 'search':
-        return <ResonanceMap user={userProfile} />; // Placeholder for now
+        return <WorldMap user={userProfile} />; // Placeholder for now
       default:
-        return <ResonanceMap user={userProfile} />;
+        return <WorldMap user={userProfile} />;
     }
   };
 
